@@ -103,7 +103,10 @@ h6 {
 
 #header h2 span {
   color: #fff;
-  border-bottom: 2px solid #18d26e;
+  border-bottom: 2px solid transparent; /* 4px è un esempio di spessore del bordo */
+
+  /* Applica il gradiente solo al bordo inferiore */
+  border-image: linear-gradient(to right, rgba(255,222,89,1) 0%, rgba(24,210,110,1) 100%) 0 0 100% 0 / 0 0 4px 0 stretch;
   padding-bottom: 6px;
 }
 
@@ -132,7 +135,7 @@ h6 {
 }
 
 #header .social-links a:hover {
-  background: #18d26e;
+  background: linear-gradient(90deg, rgba(255,222,89,1) 0%, rgba(24,210,110,1) 100%);
 }
 
 @media (max-width: 992px) {
@@ -1005,9 +1008,15 @@ section .container {
 }
 
 .portfolio-details .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #18d26e;
+  background: linear-gradient(90deg, rgba(255,222,89,1) 0%, rgba(24,210,110,1) 100%);
 }
 
+.bord-new{
+  border: 1px solid transparent !important;
+  border-radius: 10px !important;
+  /* Applica il gradiente al bordo */
+  border-image: linear-gradient(90deg, rgba(255,222,89,1) 0%, rgba(24,210,110,1) 100%) 1 stretch !important;
+}
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
