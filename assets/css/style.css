@@ -623,7 +623,10 @@ section .container {
   position: relative;
   z-index: 1;
 }
-
+.swiper-slide{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
 .testimonials .swiper-pagination {
   margin-top: 20px;
   position: relative;
@@ -1013,7 +1016,7 @@ section .container {
 
 .bord-new{
   border: 1px solid transparent !important;
-  border-radius: 10px !important;
+  border-radius: 2px !important;
   /* Applica il gradiente al bordo */
   border-image: linear-gradient(90deg, rgba(255,222,89,1) 0%, rgba(24,210,110,1) 100%) 1 stretch !important;
 }
