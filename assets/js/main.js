@@ -253,6 +253,20 @@
     },
   });
 
+  document.addEventListener("DOMContentLoaded", function () {
+    // Selezione dell'elemento cliccabile e dell'email
+    var clickToShow = document.getElementById("clickToShow");
+    var email = document.getElementById("email");
+
+    // Aggiunta dell'event listener per il click
+    clickToShow.addEventListener("click", function () {
+      // Mostra l'email togliendo la classe d-none
+      email.classList.remove("d-none");
+      // Nasconde il testo cliccabile aggiungendo la classe d-none
+      clickToShow.classList.add("d-none");
+    });
+  });
+
   /**
    * Initiate Pure Counter
    */
