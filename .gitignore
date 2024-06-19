@@ -5,5 +5,7 @@ js/vendor
 js/scripts-dist.js
 pages/
 vendor/
-.composer.json
+composer.json
 composer.lock
+.DS_Store
+.gitignore
