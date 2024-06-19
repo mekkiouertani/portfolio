@@ -2351,7 +2351,7 @@ span.error {
   z-index: 2;
 }
 
-@media  (max-width: 400px) {
+@media  (max-width: 450px) {
   .portfolio-wrapper span.cover:nth-child(2) {
     display: none;
   }
