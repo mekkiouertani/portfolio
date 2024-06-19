@@ -18,7 +18,7 @@ Sono sempre alla ricerca di nuove opportunità e sfide. Se sei interessato a lav
 - **Email**: [mekki.ouertani@gmail.com](mailto:mekki.ouertani@gmail.com)
 - **GitHub**: [mekkiouertani](https://github.com/mekkiouertani)
 - **LinkedIn**: [mekkiouertani](https://www.linkedin.com/in/mekkiouertani/)
-- **Curriculum Vitae**: [Visualizza il mio CV](https://drive.google.com/file/d/1xYHFkjsOdJhTdKYU_JtzAgr5CYB3H-et/view?usp=sharing)
+- **Curriculum Vitae**: [Visualizza il mio CV](https://drive.google.com/file/d/1tX-s64HOVWsgYdlzVJYGTO6ebiLRer7l/view?usp=sharing)
 
 ## Ringraziamenti
 

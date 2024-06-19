@@ -1,0 +1,9 @@
+css/css
+.idea/
+.vscode/
+js/vendor
+js/scripts-dist.js
+pages/
+vendor/
+.composer.json
+composer.lock
