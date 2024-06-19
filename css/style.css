@@ -2352,7 +2352,7 @@ span.error {
 }
 
 @media  (max-width: 400px) {
-  .cover{
+  .portfolio-wrapper span.cover:nth-child(2) {
     display: none;
   }
   .text-container{
