@@ -2351,6 +2351,16 @@ span.error {
   z-index: 2;
 }
 
+@media  (max-width: 400px) {
+  .cover{
+    display: none;
+  }
+  .text-container{
+    transform: scale(0.9);
+  }
+}
+
+
 .gsap-reveal-hero .reveal-wrap .reveal-content {
   line-height: 1.5;
   z-index: 1;
