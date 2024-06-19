@@ -2105,20 +2105,20 @@ figure.dotted-bg:before {
 .jarallax {
   position: relative;
   z-index: 0;
-  background-image: url('/images/bg22.jpg') !important;
+  background-image: url('../images/bg22.jpg') !important;
 }
 
 /* Media query per schermi fino a 768px */
 @media (max-width: 768px) {
   .jarallax {
-    background-image: url('/images/bg22.m.jpg') !important;
+    background-image: url('../images/bg22.m.jpg') !important;
   }
 }
 
 /* Media query per schermi fino a 576px */
 @media (max-width: 576px) {
   .jarallax {
-    background-image: url('/images/bg22.small.jpg') !important;
+    background-image: url('../images/bg22.small.jpg') !important;
   }
   .txt-pd {
     padding-bottom: 250px !important;
