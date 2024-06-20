@@ -4,24 +4,21 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 
-error_log("Request method: " . $_SERVER["REQUEST_METHOD"]); // Log the request method
+// Aggiungi l'intestazione CORS
+header("Access-Control-Allow-Origin: https://mekkiouertani.github.io");
+header("Access-Control-Allow-Headers: Content-Type");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   error_log("POST request received"); // Log when POST request is received
    $name = trim(stripslashes($_POST['name']));
    $email = trim(stripslashes($_POST['email']));
    $contact_message = trim(stripslashes($_POST['message']));
-
-   error_log("Name: " . $name); // Log the name
-   error_log("Email: " . $email); // Log the email
-   error_log("Message: " . $contact_message); // Log the message
 
    $subject = "Contact Form Submission";
 
    $mail = new PHPMailer(true);
    try {
-      $mail->SMTPDebug = 2; // Attiva il debug per vedere i dettagli del processo di invio dell'email
-      $mail->Debugoutput = 'error_log';
+      $mail->SMTPDebug = 0; // Disattiva il debug per la produzione
+      $mail->Debugoutput = 'html';
 
       $mail->isSMTP();
       $mail->Host = 'smtp.gmail.com';
@@ -48,7 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $mail->Body = "Email from: " . $name . "<br />Email address: " . $email . "<br />Message: <br />" . nl2br($contact_message) . "<br /> ----- <br /> This email was sent from your site contact form.";
 
       $mail->send();
-      error_log("Email sent successfully");
       echo 'OK';
    } catch (Exception $e) {
       echo "Mailer Error: " . $mail->ErrorInfo;
