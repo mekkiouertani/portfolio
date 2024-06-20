@@ -2354,7 +2354,9 @@ span.error {
   display: none;
 }
 @media  (max-width: 450px) {
-
+.subheading{
+  transform: scale(0.9);
+}
   .text-container{
     transform: scale(0.9);
   }
