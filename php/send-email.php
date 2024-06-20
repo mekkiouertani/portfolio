@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    $mail = new PHPMailer(true);
    try {
-      $mail->SMTPDebug = 0;
+      $mail->SMTPDebug = 2; // Aumenta il livello di debug
       $mail->Debugoutput = 'html';
 
       $mail->isSMTP();
