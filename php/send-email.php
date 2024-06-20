@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php';
 
 // Aggiungi le intestazioni CORS
-header("Access-Control-Allow-Origin: https://mekkiouertani.github.io/portfolio");
+header("Access-Control-Allow-Origin: https://mekkiouertani.github.io");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Credentials: true");
@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   error_log("Handling POST request"); // Aggiungi log per debug
+
    $name = trim(stripslashes($_POST['name']));
    $email = trim(stripslashes($_POST['email']));
    $contact_message = trim(stripslashes($_POST['message']));
@@ -50,13 +52,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $mail->Body = "Email from: " . $name . "<br />Email address: " . $email . "<br />Message: <br />" . nl2br($contact_message) . "<br /> ----- <br /> This email was sent from your site contact form.";
 
       $mail->send();
+      error_log("Email sent successfully"); // Aggiungi log per debug
       echo 'OK';
    } catch (Exception $e) {
       echo "Mailer Error: " . $mail->ErrorInfo;
-      error_log("Mailer Error: " . $mail->ErrorInfo); //  log errore
+      error_log("Mailer Error: " . $mail->ErrorInfo); // Aggiungi il log dell'errore
    }
 } else {
    echo "Invalid request method.";
-   error_log("Invalid request method."); //log errore
+   error_log("Invalid request method."); // Aggiungi il log dell'errore
 }
 ?>
