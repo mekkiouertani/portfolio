@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php';
 
 // Aggiungi le intestazioni CORS
-header("Access-Control-Allow-Origin: https://mekkiouertani.github.io");
+header("Access-Control-Allow-Origin: https://mekkiouertani.github.io/portfolio");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Credentials: true");
@@ -25,9 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    $mail = new PHPMailer(true);
    try {
-      $mail->SMTPDebug = 0; // Disattiva il debug per la produzione
-      $mail->Debugoutput = 'html';
-
       $mail->isSMTP();
       $mail->Host = 'smtp.gmail.com';
       $mail->SMTPAuth = true;
@@ -56,10 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo 'OK';
    } catch (Exception $e) {
       echo "Mailer Error: " . $mail->ErrorInfo;
-      error_log("Mailer Error: " . $mail->ErrorInfo); // Aggiungi il log dell'errore
+      error_log("Mailer Error: " . $mail->ErrorInfo); //  log errore
    }
 } else {
    echo "Invalid request method.";
-   error_log("Invalid request method."); // Aggiungi il log dell'errore
+   error_log("Invalid request method."); //log errore
 }
 ?>
