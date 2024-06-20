@@ -596,7 +596,7 @@ var contactForm = function () {
       },
       messages: {
         name: "Si prega di inserire il nome",
-        email: "i prega di inserire un indirizzo mail valido.",
+        email: "Si prega di inserire un indirizzo mail valido.",
         message: "Si prega di inserire un messaggio",
       },
       errorElement: "span",
@@ -608,7 +608,7 @@ var contactForm = function () {
 
         $.ajax({
           type: "POST",
-          url: "php/send-email.php",
+          url: "https://portfolio-send-email-2994007de98d.herokuapp.com/php/send-email.php", // URL aggiornato
           data: $(form).serialize(),
 
           beforeSend: function () {
@@ -641,6 +641,10 @@ var contactForm = function () {
     });
   }
 };
+
+$(document).ready(function () {
+  contactForm();
+});
 
 var stickyFillPlugin = function () {
   var elements = document.querySelectorAll(".unslate_co--sticky");

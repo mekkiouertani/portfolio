@@ -58,3 +58,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    echo "Invalid request method.";
    error_log("Invalid request method."); // Aggiungi il log dell'errore
 }
+?>
