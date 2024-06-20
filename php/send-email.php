@@ -4,9 +4,17 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 
-// Aggiungi l'intestazione CORS
-header("Access-Control-Allow-Origin: https://mekkiouertani.github.io");
+// Aggiungi le intestazioni CORS
+header("Access-Control-Allow-Origin: https://mekkiouertani.github.io/portfolio");
 header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Credentials: true");
+
+// Gestisci la richiesta OPTIONS per le preflight requests CORS
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+   http_response_code(200);
+   exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $name = trim(stripslashes($_POST['name']));
