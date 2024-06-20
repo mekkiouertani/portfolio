@@ -20,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    $mail = new PHPMailer(true);
    try {
-      $mail->SMTPDebug = 0; // Disattiva il debug per la produzione
-      $mail->Debugoutput = 'html';
+      $mail->SMTPDebug = 2; // Attiva il debug per vedere i dettagli del processo di invio dell'email
+      $mail->Debugoutput = 'error_log';
 
       $mail->isSMTP();
       $mail->Host = 'smtp.gmail.com';
@@ -48,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $mail->Body = "Email from: " . $name . "<br />Email address: " . $email . "<br />Message: <br />" . nl2br($contact_message) . "<br /> ----- <br /> This email was sent from your site contact form.";
 
       $mail->send();
+      error_log("Email sent successfully");
       echo 'OK';
    } catch (Exception $e) {
       echo "Mailer Error: " . $mail->ErrorInfo;
@@ -57,4 +58,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    echo "Invalid request method.";
    error_log("Invalid request method."); // Aggiungi il log dell'errore
 }
-?>
