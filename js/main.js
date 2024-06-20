@@ -458,7 +458,7 @@ var portfolioItemClick = function () {
 
     $("html, body").animate(
       {
-        scrollTop: $("#portfolio-section").offset().top - 50,
+        scrollTop: $("#portfolio-section").offset().top - 400,
       },
       700,
       "easeInOutExpo",
@@ -735,6 +735,7 @@ var animateReveal = function () {
     });
   }
 };
+
 document.addEventListener("DOMContentLoaded", function () {
   const word = "Mekki Ouertani";
   const textElement = document.getElementById("text");

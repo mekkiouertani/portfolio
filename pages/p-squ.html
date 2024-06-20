@@ -85,27 +85,27 @@
 
               </div>
               <div class="col-md-12 mb-4" style="display: flex; justify-content: end;">
-                <a href="#portfolio-section" class="gradient-text text-right">Torna su</a>
+                <a href="#portfolio-section" class="gradient-text text-right" id="scrollLink">Torna su</a>
               </div>
-            </div>
 
-          </div>
+              <!-- Altri contenuti -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
+              <!-- Loader -->
+              <div id="unslate_co--overlayer"></div>
+              <div class="site-loader-wrap">
+                <div class="site-loader"></div>
+              </div>
 
-  <!-- Loader -->
-  <div id="unslate_co--overlayer"></div>
-  <div class="site-loader-wrap">
-    <div class="site-loader"></div>
-  </div>
-
-  <script src="js/scripts-dist.js"></script>
-  <script src="js/main.js"></script>
-
+              <script src="/js/scripts-dist.js"></script>
+              <script src="/js/main.js"></script>
+              <script>
+                // Aggiunge un event listener al link con l'id 'scrollLink'
+                document.getElementById('scrollLink').addEventListener('click', function (event) {
+                  event.preventDefault(); // Impedisce il comportamento predefinito del link
+                  // Scorre fino alla sezione desiderata con un'animazione fluida
+                  document.getElementById('portfolio-section').scrollIntoView({ behavior: 'smooth' });
+                });
+              </script>
 
 </body>
 
