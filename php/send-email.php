@@ -4,10 +4,6 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 
-// Rimuovi il caricamento delle variabili d'ambiente dal file .env
-// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-// $dotenv->load();
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $name = trim(stripslashes($_POST['name']));
    $email = trim(stripslashes($_POST['email']));
@@ -17,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    $mail = new PHPMailer(true);
    try {
-      $mail->SMTPDebug = 2; // Aumenta il livello di debug
+      $mail->SMTPDebug = 0; // Disattiva il debug per la produzione
       $mail->Debugoutput = 'html';
 
       $mail->isSMTP();
