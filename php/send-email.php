@@ -4,10 +4,17 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 
+error_log("Request method: " . $_SERVER["REQUEST_METHOD"]); // Log the request method
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   error_log("POST request received"); // Log when POST request is received
    $name = trim(stripslashes($_POST['name']));
    $email = trim(stripslashes($_POST['email']));
    $contact_message = trim(stripslashes($_POST['message']));
+
+   error_log("Name: " . $name); // Log the name
+   error_log("Email: " . $email); // Log the email
+   error_log("Message: " . $contact_message); // Log the message
 
    $subject = "Contact Form Submission";
 
