@@ -2109,7 +2109,7 @@ figure.dotted-bg:before {
 }
 
 /* Media query per schermi fino a 768px */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .jarallax {
     background-image: url('../images/bg22.m.jpg') !important;
   }
