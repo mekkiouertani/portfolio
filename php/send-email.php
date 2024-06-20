@@ -6,6 +6,7 @@ require '../vendor/autoload.php';
 
 // Aggiungi le intestazioni CORS
 header("Access-Control-Allow-Origin: https://mekkiouertani.github.io");
+header("Access-Control-Allow-Origin: https://mekkiouertani.github.io/portfolio/");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Credentials: true");
