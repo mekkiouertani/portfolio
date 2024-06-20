@@ -48,6 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo 'OK';
    } catch (Exception $e) {
       echo "Mailer Error: " . $mail->ErrorInfo;
+      error_log("Mailer Error: " . $mail->ErrorInfo); // Aggiungi il log dell'errore
    }
+} else {
+   echo "Invalid request method.";
+   error_log("Invalid request method."); // Aggiungi il log dell'errore
 }
 ?>
