@@ -4,6 +4,10 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 
+// Carica le variabili d'ambiente dal file .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $name = trim(stripslashes($_POST['name']));
    $email = trim(stripslashes($_POST['email']));
@@ -13,20 +17,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    $mail = new PHPMailer(true);
    try {
-      // Abilita il debug dettagliato (disabilitato in produzione)
       $mail->SMTPDebug = 0;
       $mail->Debugoutput = 'html';
 
-      // Configurazione del server SMTP di Gmail
       $mail->isSMTP();
       $mail->Host = 'smtp.gmail.com';
       $mail->SMTPAuth = true;
-      $mail->Username = 'mekki.ouertani@gmail.com'; // Sostituisci con il tuo indirizzo Gmail
-      $mail->Password = 'veth irnu jvbp nqti'; // Sostituisci con la tua password Gmail
+      $mail->Username = $_ENV['GMAIL_USERNAME'];
+      $mail->Password = $_ENV['GMAIL_PASSWORD'];
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
       $mail->Port = 587;
 
-      // Opzioni SSL (puoi disabilitarle se non funzionano)
       $mail->SMTPOptions = array(
          'ssl' => array(
             'verify_peer' => false,
@@ -35,12 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          )
       );
 
-      // Destinatario
       $mail->setFrom($email, $name);
-      $mail->addAddress('mekki.ouertani@gmail.com'); // Il tuo indirizzo email
-      $mail->addReplyTo($email, $name); // Imposta l'indirizzo Reply-To
+      $mail->addAddress('mekki.ouertani@gmail.com');
+      $mail->addReplyTo($email, $name);
 
-      // Contenuto dell'email
       $mail->isHTML(true);
       $mail->Subject = $subject;
       $mail->Body = "Email from: " . $name . "<br />Email address: " . $email . "<br />Message: <br />" . nl2br($contact_message) . "<br /> ----- <br /> This email was sent from your site contact form.";
