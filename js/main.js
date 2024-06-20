@@ -580,69 +580,67 @@ var jarallaxPlugin = function () {
   });
 };
 
-var contactForm = function () {
-  if ($("#contactForm").length > 0) {
-    $("#contactForm").validate({
-      rules: {
-        name: "required",
-        email: {
-          required: true,
-          email: true,
-        },
-        message: {
-          required: true,
-          minlength: 5,
-        },
-      },
-      messages: {
-        name: "Si prega di inserire il nome",
-        email: "Si prega di inserire un indirizzo mail valido.",
-        message: "Si prega di inserire un messaggio",
-      },
-      errorElement: "span",
-      errorLabelContainer: ".form-error",
-      /* submit via ajax */
-      submitHandler: function (form) {
-        var $submit = $(".submitting"),
-          waitText = "Submitting...";
-
-        $.ajax({
-          type: "POST",
-          url: "https://portfolio-send-email-2994007de98d.herokuapp.com/php/send-email.php", // URL aggiornato
-          data: $(form).serialize(),
-
-          beforeSend: function () {
-            $submit.css("display", "block").text(waitText);
+$(document).ready(function () {
+  var contactForm = function () {
+    if ($("#contactForm").length > 0) {
+      $("#contactForm").validate({
+        rules: {
+          name: "required",
+          email: {
+            required: true,
+            email: true,
           },
-          success: function (msg) {
-            if (msg == "OK") {
-              $("#form-message-warning").hide();
-              setTimeout(function () {
-                $("#contactForm").fadeOut();
-              }, 1000);
-              setTimeout(function () {
-                $("#form-message-success").fadeIn();
-              }, 1400);
-            } else {
-              $("#form-message-warning").html(msg);
+          message: {
+            required: true,
+            minlength: 5,
+          },
+        },
+        messages: {
+          name: "Si prega di inserire il nome",
+          email: "Si prega di inserire un indirizzo mail valido.",
+          message: "Si prega di inserire un messaggio",
+        },
+        errorElement: "span",
+        errorLabelContainer: ".form-error",
+        submitHandler: function (form) {
+          var $submit = $(".submitting"),
+            waitText = "Submitting...";
+
+          $.ajax({
+            type: "POST",
+            url: "https://portfolio-send-email-2994007de98d.herokuapp.com/php/send-email.php",
+            data: $(form).serialize(),
+            beforeSend: function () {
+              $submit.css("display", "block").text(waitText);
+            },
+            success: function (msg) {
+              if (msg == "OK") {
+                $("#form-message-warning").hide();
+                setTimeout(function () {
+                  $("#contactForm").fadeOut();
+                }, 1000);
+                setTimeout(function () {
+                  $("#form-message-success").fadeIn();
+                }, 1400);
+              } else {
+                $("#form-message-warning").html(msg);
+                $("#form-message-warning").fadeIn();
+                $submit.css("display", "none");
+              }
+            },
+            error: function () {
+              $("#form-message-warning").html(
+                "Qualcosa è andato storto. Si prega di riprovare."
+              );
               $("#form-message-warning").fadeIn();
               $submit.css("display", "none");
-            }
-          },
-          error: function () {
-            $("#form-message-warning").html(
-              "Qualcosa è andato storto. Si prega di riprovare."
-            );
-            $("#form-message-warning").fadeIn();
-            $submit.css("display", "none");
-          },
-        });
-      },
-    });
-  }
-};
+            },
+          });
+        },
+      });
+    }
+  };
 
-$(document).ready(function () {
   contactForm();
 });
 
