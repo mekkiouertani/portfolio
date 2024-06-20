@@ -9,7 +9,7 @@
 
 <body>
     <h1>Contact Form</h1>
-    <form action="php/send-email.php" method="post">
+    <form action="https://portfolio-send-email-2994007de98d.herokuapp.com/php/send-email.php" method="post">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" required>
         <label for="email">Email:</label>
