@@ -4,9 +4,9 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 
-// Carica le variabili d'ambiente dal file .env
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+// Rimuovi il caricamento delle variabili d'ambiente dal file .env
+// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+// $dotenv->load();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $name = trim(stripslashes($_POST['name']));
@@ -23,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $mail->isSMTP();
       $mail->Host = 'smtp.gmail.com';
       $mail->SMTPAuth = true;
-      $mail->Username = $_ENV['GMAIL_USERNAME'];
-      $mail->Password = $_ENV['GMAIL_PASSWORD'];
+      $mail->Username = getenv('GMAIL_USERNAME');
+      $mail->Password = getenv('GMAIL_PASSWORD');
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
       $mail->Port = 587;
 
