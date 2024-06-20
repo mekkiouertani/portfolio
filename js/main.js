@@ -614,6 +614,7 @@ $(document).ready(function () {
               $submit.css("display", "block").text(waitText);
             },
             success: function (msg) {
+              console.log("Response from server:", msg); // Aggiunto per debug
               if (msg == "OK") {
                 $("#form-message-warning").hide();
                 setTimeout(function () {
@@ -623,12 +624,16 @@ $(document).ready(function () {
                   $("#form-message-success").fadeIn();
                 }, 1400);
               } else {
+                console.error("Error message from server:", msg); // Aggiunto per debug
                 $("#form-message-warning").html(msg);
                 $("#form-message-warning").fadeIn();
                 $submit.css("display", "none");
               }
             },
-            error: function () {
+            error: function (xhr, status, error) {
+              console.error("Error: ", error); // Aggiunto per debug
+              console.error("Status: ", status); // Aggiunto per debug
+              console.dir(xhr); // Aggiunto per debug
               $("#form-message-warning").html(
                 "Qualcosa è andato storto. Si prega di riprovare."
               );
