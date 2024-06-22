@@ -2357,13 +2357,19 @@ span.error {
   opacity: 0 !important;
   visibility: 0 !important;
 }
+
 @media  (max-width: 450px) {
 .subheading{
-  transform: scale(0.9);
+  transform: scale(0.8);
+  margin-left: 10% !important;
 }
   .text-container{
     transform: scale(0.9);
   }
+}
+
+.subheading{
+  transform: scale(1);
 }
 
 

@@ -18,7 +18,7 @@ jQuery(function ($) {
   scrollWindow();
   counter();
   jarallaxPlugin();
-  contactForm();
+  /* contactForm(); */
   stickyFillPlugin();
   animateReveal();
 });
