@@ -18,7 +18,7 @@ jQuery(function ($) {
   scrollWindow();
   counter();
   jarallaxPlugin();
-  /*   contactForm(); */
+  contactForm();
   stickyFillPlugin();
   animateReveal();
 });
@@ -440,14 +440,14 @@ var onePageNavigation = function () {
 };
 
 // load ajax page
+// Carica la pagina AJAX
 var portfolioItemClick = function () {
   $(".ajax-load-page").on("click", function (e) {
     var id = $(this).data("id"),
       href = $(this).attr("href");
 
-    if ($("#portfolio-single-holder > div").length) {
-      $("#portfolio-single-holder > div").remove();
-    }
+    // Rimuove completamente il contenuto precedente
+    $("#portfolio-single-holder").empty();
 
     TweenMax.to(".loader-portfolio-wrap", 1, {
       top: "-50px",
@@ -456,13 +456,13 @@ var portfolioItemClick = function () {
       ease: Power4.easeOut,
     });
 
+    // Scorre la pagina fino alla sezione del portfolio
     $("html, body").animate(
       {
-        scrollTop: $("#portfolio-section").offset().top - 400,
+        scrollTop: $("#portfolio-section").offset().top - 50,
       },
       700,
-      "easeInOutExpo",
-      function () {}
+      "easeInOutExpo"
     );
 
     setTimeout(function () {
@@ -472,9 +472,10 @@ var portfolioItemClick = function () {
     e.preventDefault();
   });
 
-  // Close
+  // Chiudi il post del portfolio
   $("body").on("click", ".js-close-portfolio", function () {
     setTimeout(function () {
+      // Scorre la pagina fino alla sezione del portfolio dopo un breve ritardo
       $("html, body").animate(
         {
           scrollTop: $("#portfolio-section").offset().top - 50,
@@ -484,6 +485,7 @@ var portfolioItemClick = function () {
       );
     }, 200);
 
+    // Mostra di nuovo il contenuto del portfolio
     TweenMax.set(".portfolio-wrapper", {
       visibility: "visible",
       height: "auto",
@@ -493,6 +495,9 @@ var portfolioItemClick = function () {
       opacity: 0,
       display: "none",
       onComplete() {
+        // Rimuove il contenuto del portfolio chiuso
+        $("#portfolio-single-holder").empty();
+
         TweenMax.to(".portfolio-wrapper", 1, {
           marginTop: "0px",
           autoAlpha: 1,
@@ -513,6 +518,7 @@ $(document).ajaxStop(function () {
   }, 400);
 });
 
+// Carica la pagina singola del portfolio
 var loadPortfolioSinglePage = function (id, href) {
   $.ajax({
     url: href,
@@ -530,6 +536,9 @@ var loadPortfolioSinglePage = function (id, href) {
       var pSingleHolder = $("#portfolio-single-holder");
 
       var getHTMLContent = $(html).find(".portfolio-single-wrap").html();
+
+      // Rimuove il contenuto precedente prima di aggiungere il nuovo
+      pSingleHolder.empty();
 
       pSingleHolder.append(
         '<div id="portfolio-single-' +
@@ -580,74 +589,67 @@ var jarallaxPlugin = function () {
   });
 };
 
-$(document).ready(function () {
-  var contactForm = function () {
-    if ($("#contactForm").length > 0) {
-      $("#contactForm").validate({
-        rules: {
-          name: "required",
-          email: {
-            required: true,
-            email: true,
-          },
-          message: {
-            required: true,
-            minlength: 5,
-          },
+var contactForm = function () {
+  if ($("#contactForm").length > 0) {
+    $("#contactForm").validate({
+      rules: {
+        name: "required",
+        email: {
+          required: true,
+          email: true,
         },
-        messages: {
-          name: "Si prega di inserire il nome",
-          email: "Si prega di inserire un indirizzo mail valido.",
-          message: "Si prega di inserire un messaggio",
+        message: {
+          required: true,
+          minlength: 5,
         },
-        errorElement: "span",
-        errorLabelContainer: ".form-error",
-        submitHandler: function (form) {
-          var $submit = $(".submitting"),
-            waitText = "Submitting...";
+      },
+      messages: {
+        name: "Si prega di inserire il nome",
+        email: "i prega di inserire un indirizzo mail valido.",
+        message: "Si prega di inserire un messaggio",
+      },
+      errorElement: "span",
+      errorLabelContainer: ".form-error",
+      /* submit via ajax */
+      submitHandler: function (form) {
+        var $submit = $(".submitting"),
+          waitText = "Submitting...";
 
-          $.ajax({
-            type: "POST",
-            url: "https://portfolio-send-email-2994007de98d.herokuapp.com/php/send-email.php",
-            data: $(form).serialize(),
-            beforeSend: function () {
-              $submit.css("display", "block").text(waitText);
-            },
-            success: function (msg) {
-              console.log("Response from server:", msg); // Aggiunto per debug
-              if (msg == "OK") {
-                $("#form-message-warning").hide();
-                setTimeout(function () {
-                  $("#contactForm").fadeOut();
-                }, 1000);
-                setTimeout(function () {
-                  $("#form-message-success").fadeIn();
-                }, 1400);
-              } else {
-                console.error("Error message from server:", msg); // Aggiunto per debug
-                $("#form-message-warning").html(msg);
-                $("#form-message-warning").fadeIn();
-                $submit.css("display", "none");
-              }
-            },
-            error: function (xhr, status, error) {
-              console.error("Error: ", error); // Aggiunto per debug
-              console.error("Status: ", status); // Aggiunto per debug
-              console.dir(xhr); // Aggiunto per debug
-              $("#form-message-warning").html(
-                "Qualcosa è andato storto. Si prega di riprovare."
-              );
+        $.ajax({
+          type: "POST",
+          url: "php/send-email.php",
+          data: $(form).serialize(),
+
+          beforeSend: function () {
+            $submit.css("display", "block").text(waitText);
+          },
+          success: function (msg) {
+            if (msg == "OK") {
+              $("#form-message-warning").hide();
+              setTimeout(function () {
+                $("#contactForm").fadeOut();
+              }, 1000);
+              setTimeout(function () {
+                $("#form-message-success").fadeIn();
+              }, 1400);
+            } else {
+              $("#form-message-warning").html(msg);
               $("#form-message-warning").fadeIn();
               $submit.css("display", "none");
-            },
-          });
-        },
-      });
-    }
-  };
-
-  contactForm();
-});
+            }
+          },
+          error: function () {
+            $("#form-message-warning").html(
+              "Qualcosa è andato storto. Si prega di riprovare."
+            );
+            $("#form-message-warning").fadeIn();
+            $submit.css("display", "none");
+          },
+        });
+      },
+    });
+  }
+};
 
 var stickyFillPlugin = function () {
   var elements = document.querySelectorAll(".unslate_co--sticky");
@@ -735,7 +737,6 @@ var animateReveal = function () {
     });
   }
 };
-
 document.addEventListener("DOMContentLoaded", function () {
   const word = "Mekki Ouertani";
   const textElement = document.getElementById("text");

@@ -1205,7 +1205,9 @@ a, a:hover {
   margin: 0;
   padding: 0;
 }
-
+#unslate_co--overlayer{
+  z-index: ;
+}
 .portfolio-item .portfolio-item-content p{
 color:rgba(24,210,110,1) !important ;
 font-weight: bold;
@@ -2350,8 +2352,10 @@ span.error {
   margin-left: -100%;
   z-index: 2;
 }
-.portfolio-wrapper span.cover:nth-child(2) {
-  display: none;
+.portfolio-wrapper span.cover:nth-child(2), .portfolio-wrapper .gsap-reveal span.cover{
+  display: none !important;
+  opacity: 0 !important;
+  visibility: 0 !important;
 }
 @media  (max-width: 450px) {
 .subheading{
